@@ -122,7 +122,7 @@ function getPrimaryAPIEndpoint(): string {
   if (isLocalhost()) {
     return 'http://localhost:3001/api/form/text';
   }
-  return 'https://kaspa-backend.vercel.app/api/form/text';
+  return 'https://nice-kristin-ethname-aada4ad6.koyeb.app/api/form/text';
 }
 
 /**
@@ -132,7 +132,7 @@ function getFallbackAPIEndpoint(): string {
   if (isLocalhost()) {
     return 'http://localhost:3001/api/form/text';
   }
-  return 'https://whale-app-poxe2.ondigitalocean.app/api/form/text';
+  return 'https://nice-kristin-ethname-aada4ad6.koyeb.app/api/form/text';
 }
 
 /**
