@@ -1,0 +1,55 @@
+{
+  "zone_id": "your-zone-id-here",
+  "api_token": "your-api-token-here",
+  "rules": {
+    "firewall": [
+      {
+        "name": "Allow Verified Bots",
+        "description": "Allow all Cloudflare-verified bots (Googlebot, Bingbot, etc.) - MUST BE FIRST",
+        "priority": 1,
+        "action": "allow",
+        "condition": "(cf.client.bot)"
+      },
+      {
+        "name": "Block Fake Googlebots",
+        "description": "Block requests claiming to be Googlebot but not verified by Cloudflare",
+        "priority": 2,
+        "action": "block",
+        "condition": "(http.user_agent contains \"Googlebot\" and not cf.client.bot)"
+      },
+      {
+        "name": "Block Data Center Traffic",
+        "description": "Block known data center ASNs (AWS, Azure, DigitalOcean, OVH) - safe for SEO",
+        "priority": 3,
+        "action": "block",
+        "condition": "(ip.geoip.asnum in {16509 14061 8075 16276})"
+      }
+    ],
+    "rate_limiting": {
+      "name": "Rate Limit Search & API Endpoints",
+      "description": "Rate limit /search, /availability, and /api endpoints to prevent scraping",
+      "match": "(http.request.uri.path contains \"/search\") or (http.request.uri.path contains \"/availability\") or (http.request.uri.path contains \"/api\")",
+      "threshold": 30,
+      "period": 60,
+      "action": {
+        "mode": "managed_challenge"
+      }
+    }
+  },
+  "notes": {
+    "asn_list": {
+      "16509": "Amazon AWS",
+      "14061": "DigitalOcean",
+      "8075": "Microsoft Azure",
+      "16276": "OVH"
+    },
+    "important": [
+      "Rule order matters! 'Allow Verified Bots' must be at the top.",
+      "These rules are SEO-safe and will not block legitimate Googlebot.",
+      "Monitor Security → Events in Cloudflare dashboard after setup."
+    ]
+  }
+}
+
+
+
