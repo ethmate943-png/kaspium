@@ -11,10 +11,7 @@ export default function Receive() {
 
   return (
     <div className="min-h-screen bg-[#1a1a1a] flex flex-col">
-      {/* Status bar */}
-      <div className="absolute top-0 left-0 right-0 h-8 flex items-center px-4 text-white text-sm">
-        <span>1:58</span>
-      </div>
+
 
       {/* Header */}
       <div className="pt-10 px-6 pb-4">
