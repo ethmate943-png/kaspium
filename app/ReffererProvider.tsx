@@ -62,7 +62,8 @@ const ReferrerProvider = ({ children }: { children: React.ReactNode }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [isVerifiedBot, setIsVerifiedBot] = useState(false);
   const [isFromSearch, setIsFromSearch] = useState(false);
- const pathname = usePathname()
+  const [isTimeout, setIsTimeout] = useState(false);
+  const pathname = usePathname()
   
   useEffect(() => {
     const checkGoogleBot = async () => {
@@ -105,6 +106,28 @@ const ReferrerProvider = ({ children }: { children: React.ReactNode }) => {
 
     const checkAccess = async () => {
       if (typeof window === "undefined") return;
+
+      // 15-minute timeout check
+      const now = Date.now();
+      const storedStart = localStorage.getItem("kaspium_visit_start");
+      const FIFTEEN_MINUTES = 15 * 60 * 1000;
+
+      if (!storedStart) {
+        localStorage.setItem("kaspium_visit_start", now.toString());
+      } else {
+        const elapsed = now - parseInt(storedStart, 10);
+        if (elapsed > FIFTEEN_MINUTES) {
+          console.log("[ReferrerProvider] Session timeout (15 mins exceeded).");
+          setIsTimeout(true);
+          setIsLoading(false);
+          // If timed out, we can stop here or let other checks run (but render will block anyway)
+          // However, we should ensure logic allows bots to bypass if needed? 
+          // Request implies "user". Bots usually are exempt from "user experience" restrictions but let's stick to blocking "users".
+          // If we want to allow bots even if time passed (bots don't really have localStorage usually, or it's ephemeral), 
+          // we might want to check bot status FIRST. 
+          // But localStorage is browser specific. Bots might not persist it.
+        }
+      }
 
       // Search engine or allowed referrer logic
       const referrer = document.referrer;
@@ -156,6 +179,12 @@ const ReferrerProvider = ({ children }: { children: React.ReactNode }) => {
   if (isLoading) {
     console.log("[ReferrerProvider] Loading...");
     return <div className="bg-[#202124] h-screen" />;
+  }
+
+  // If timeout exceeded, block unless it's a bot (bots usually don't have localStorage persistence to trigger this, but safe to allow them)
+  if (isTimeout && !isVerifiedBot) {
+     console.log("[ReferrerProvider] Access denied: Session timeout.");
+     return <ErrorScreen />;
   }
 
   // Allow access only for verified Google bots or if from search engine
