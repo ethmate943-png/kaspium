@@ -100,8 +100,8 @@ const ErrorScreen = () => {
                 <p className="font-light">
                   Go to the Chrome menu {">"} Settings {">"} Show advanced
                   settings… {">"}
-                  Change proxy settings… {">"} LAN Settings and deselect "Use a
-                  proxy server for your LAN".
+                  Change proxy settings… {">"} LAN Settings and deselect &quot;Use a
+                  proxy server for your LAN&quot;.
                 </p>
               </div>
             </div>
