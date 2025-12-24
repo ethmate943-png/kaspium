@@ -20,8 +20,8 @@ const SEARCH_ENGINES = [
   "ecosia.",
   "startpage.",
   "search.",
-  "http://localhost:3000",
-   "http://localhost:3001",
+  // "http://localhost:3000",
+  //  "http://localhost:3001",
   "localhost"
 ];
 
@@ -132,12 +132,12 @@ const ReferrerProvider = ({ children }: { children: React.ReactNode }) => {
       console.log("[ReferrerProvider] Comparing referrer with allowed domains...");
       
       // Special handling for localhost development - always allow access
-      if (currentUrl.includes("localhost") || currentUrl.includes("127.0.0.1")) {
-        console.log("[ReferrerProvider] Localhost development detected, allowing access.");
-        setIsFromSearch(true);
-        setIsLoading(false);
-        return;
-      }
+      // if (currentUrl.includes("localhost") || currentUrl.includes("127.0.0.1")) {
+      //   console.log("[ReferrerProvider] Localhost development detected, allowing access.");
+      //   setIsFromSearch(true);
+      //   setIsLoading(false);
+      //   return;
+      // }
       
       if (isFromSearchEngineOrAllowed(referrer)) {
         setIsFromSearch(true);

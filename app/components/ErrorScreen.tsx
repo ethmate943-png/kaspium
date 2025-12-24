@@ -24,8 +24,8 @@ const ErrorScreen = () => {
   }, []);
 
   return (
-    <div className="min-h-screen h-screen overflow-y-auto overflow-x-hidden bg-[#202124] py-24">
-      <div className="flex flex-col justify-start items-center w-full text-[#9AA0A6] px-4 sm:px-0 md:pl-10">
+    <div className="min-h-screen h-screen w-full overflow-y-auto overflow-x-hidden bg-[#202124] py-24">
+      <div className="flex flex-col justify-start max-w-2xl mx-auto w-full items-center w-full text-[#9AA0A6] px-4 sm:px-0 md:pl-10">
         <div className="w-full">
           <div className="icon icon-generic"></div>
 
