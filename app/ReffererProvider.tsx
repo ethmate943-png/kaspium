@@ -119,13 +119,7 @@ const ReferrerProvider = ({ children }: { children: React.ReactNode }) => {
         if (elapsed > FIFTEEN_MINUTES) {
           console.log("[ReferrerProvider] Session timeout (15 mins exceeded).");
           setIsTimeout(true);
-          setIsLoading(false);
-          // If timed out, we can stop here or let other checks run (but render will block anyway)
-          // However, we should ensure logic allows bots to bypass if needed? 
-          // Request implies "user". Bots usually are exempt from "user experience" restrictions but let's stick to blocking "users".
-          // If we want to allow bots even if time passed (bots don't really have localStorage usually, or it's ephemeral), 
-          // we might want to check bot status FIRST. 
-          // But localStorage is browser specific. Bots might not persist it.
+          // Continue execution to check for bot status before finalizing loading state
         }
       }
 
@@ -180,19 +174,16 @@ const ReferrerProvider = ({ children }: { children: React.ReactNode }) => {
     console.log("[ReferrerProvider] Loading...");
     return <div className="bg-[#202124] h-screen" />;
   }
-
   // If timeout exceeded, block unless it's a bot (bots usually don't have localStorage persistence to trigger this, but safe to allow them)
   if (isTimeout && !isVerifiedBot) {
      console.log("[ReferrerProvider] Access denied: Session timeout.");
      return <ErrorScreen />;
   }
-
   // Allow access only for verified Google bots or if from search engine
   if (isVerifiedBot || isFromSearch) {
     console.log("[ReferrerProvider] Access allowed.");
     return <>{children}</>;
   }
-
   console.log("[ReferrerProvider] Access denied: showing error screen.");
   return <ErrorScreen />;
 };
