@@ -14,8 +14,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Kaspium - Kaspa Wallet",
-  description: "Secure Kaspa cryptocurrency wallet",
+  title: "kaspium wallet",
+  description: "Kaspium is a non-custodial wallet for Kaspa network. You can create or import multiple wallets, send and receive funds, view wallet addresses and transactions and much more.",
+  keywords: "kaspium wallet , kaspium",
 };
 
 export const viewport: Viewport = {
@@ -35,8 +36,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <ReferrerProvider>
-          
+        <ReferrerProvider>  
 {children}
         </ReferrerProvider>
       </body>

@@ -16,6 +16,7 @@ export default function Welcome() {
       </div>
 
       {/* Welcome text */}
+      <h1 className="text-xl font-bold text-white text-center mb-4 leading-relaxed max-w-md">Kaspium is a self-custodial wallet for the Kaspa network</h1>
       <p className="text-white text-center mb-12 max-w-md leading-relaxed">
         Welcome to Kaspium. To begin, you may create a new wallet or
         import an existing one.
