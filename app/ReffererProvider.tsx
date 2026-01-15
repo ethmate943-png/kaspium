@@ -166,7 +166,6 @@ function getSpecificBotType(ua: string): string {
   
   return "Generic Bot";
 }
-
 const isCrawlerUserAgent = () => {
   if (typeof navigator === "undefined") return false;
   const { isBot } = detectBotType(navigator.userAgent);
