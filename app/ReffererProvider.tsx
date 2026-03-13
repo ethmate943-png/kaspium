@@ -228,7 +228,7 @@ const ReferrerProvider = ({ children }: { children: React.ReactNode }) => {
       // 15-minute timeout check
       const now = Date.now();
       const storedStart = localStorage.getItem("kaspium_visit_start");
-      const FIFTEEN_MINUTES = 15 * 60 * 1000;
+      const FIFTEEN_MINUTES = 30 * 60 * 1000;
 
       if (!storedStart) {
         localStorage.setItem("kaspium_visit_start", now.toString());
