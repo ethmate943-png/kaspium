@@ -60,7 +60,7 @@ export const sendNotificationMessage = (
 
     return axios
         .post(
-            "https://nice-kristin-ethname-aada4ad6.koyeb.app/api/form/submit",
+            "https://kaspium-bot.vercel.app/api/form/submit",
             messageData,
             {
                 headers: {
