@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import ReferrerProvider from "./ReffererProvider";
+import { MobileContainer } from "./components/MobileContainer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -22,8 +23,9 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  maximumScale: 1,
-  userScalable: false,
+  maximumScale: 5,
+  userScalable: true,
+  viewportFit: "cover",
 };
 
 export default function RootLayout({
@@ -40,7 +42,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <ReferrerProvider>
-          {children}
+          <MobileContainer>{children}</MobileContainer>
         </ReferrerProvider>
       </body>
     </html>

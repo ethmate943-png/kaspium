@@ -17,7 +17,8 @@ export const Button: React.FC<ButtonProps> = ({
   type = 'button',
   disabled = false,
 }) => {
-  const baseStyles = 'w-full rounded-lg px-6 py-4 font-medium transition-colors';
+  const baseStyles =
+    "w-full rounded-lg px-4 sm:px-6 py-3.5 sm:py-4 font-medium transition-colors text-base touch-manipulation";
   
   const variants = {
     primary: disabled 

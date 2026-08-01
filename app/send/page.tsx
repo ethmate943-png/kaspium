@@ -13,7 +13,7 @@ export default function Send() {
   const [note, setNote] = useState('');
 
   return (
-    <div className="min-h-screen bg-[#1a1a1a] flex flex-col">
+    <div className="min-h-dvh bg-[#1a1a1a] flex flex-col">
 
 
       {/* Header */}

@@ -10,7 +10,7 @@ export default function WalletName() {
   const [walletName, setWalletName] = useState('');
 
   return (
-    <div className="min-h-screen bg-[#1a1a1a] flex flex-col px-6 pt-12">
+    <div className="min-h-dvh bg-[#1a1a1a] flex flex-col px-4 sm:px-6 pt-[max(3rem,env(safe-area-inset-top))] pb-[max(1rem,env(safe-area-inset-bottom))]">
 
 
       {/* Back button */}

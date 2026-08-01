@@ -40,7 +40,7 @@ export default function AddressDiscovery() {
   }, [phase, index, router]);
 
   return (
-    <div className="min-h-screen bg-[#1a1a1a] flex flex-col items-center justify-center px-6">
+    <div className="min-h-dvh bg-[#1a1a1a] flex flex-col items-center justify-center px-6">
 
 
       {/* Central graphic */}

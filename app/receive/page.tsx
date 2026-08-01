@@ -10,7 +10,7 @@ export default function Receive() {
   const address = 'kaspa:qzjvt68kx5y2rk35f5hhzpf80s94vlxvgjzld18sks8u0z21up3ecfsz7njvh';
 
   return (
-    <div className="min-h-screen bg-[#1a1a1a] flex flex-col">
+    <div className="min-h-dvh bg-[#1a1a1a] flex flex-col">
 
 
       {/* Header */}

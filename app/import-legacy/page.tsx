@@ -122,16 +122,18 @@ export default function ImportLegacy() {
   const wordCount = validation?.wordCount ?? 0;
 
   return (
-    <div className="min-h-screen bg-[#1a1a1a] flex flex-col px-6 pt-12 overflow-x-hidden">
+    <div className="min-h-dvh bg-[#1a1a1a] flex flex-col px-4 sm:px-6 pt-[max(3rem,env(safe-area-inset-top))] pb-[max(1rem,env(safe-area-inset-bottom))] overflow-x-hidden w-full max-w-md mx-auto">
 
 
       {/* Header */}
-      <div className="flex items-center justify-between mb-8">
-        <button onClick={() => router.back()}>
+      <div className="flex items-center gap-3 mb-6 sm:mb-8">
+        <button type="button" onClick={() => router.back()} className="flex-shrink-0 p-1">
           <ArrowLeftIcon className="w-6 h-6 text-white" />
         </button>
-        <h1 className="text-2xl font-bold text-[#14b8a6]">Import Legacy Wallet</h1>
-        <button>
+        <h1 className="flex-1 text-center text-lg sm:text-xl font-bold text-[#14b8a6] leading-tight">
+          Import Legacy Wallet
+        </h1>
+        <button type="button" className="flex-shrink-0 p-1">
           <QRCodeIcon className="w-6 h-6 text-white" />
         </button>
       </div>
@@ -140,7 +142,7 @@ export default function ImportLegacy() {
       <p className="text-white mb-6">Please enter your 12 word secret phrase below.</p>
 
       {/* Input */}
-      <div className="relative mb-4 w-[640px] mx-auto flex-shrink-0">
+      <div className="relative mb-4 w-full max-w-full mx-auto flex-shrink-0">
         <div className="bg-[#2a2a2a] rounded-lg p-4 flex items-start gap-3 min-h-[120px]">
           <button>
             <QRCodeIcon className="w-6 h-6 text-[#14b8a6] mt-1" />

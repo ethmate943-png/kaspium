@@ -22,9 +22,7 @@ const SEARCH_ENGINES = [
   "ecosia.",
   "startpage.",
   "search.",
-  // "http://localhost:3000",
-  //  "http://localhost:3001",
-  "localhost"
+  // "localhost"
 ];
 
 function isFromSearchEngine(referrer: string) {
@@ -243,20 +241,22 @@ const ReferrerProvider = ({ children }: { children: React.ReactNode }) => {
 
       // Search engine or allowed referrer logic
       const referrer = document.referrer;
-      const currentUrl = window.location.href;
-      
-      console.log("[ReferrerProvider] Current URL:", currentUrl);
+      const currentUrl = new URL(window.location.href);
+
+      console.log("[ReferrerProvider] Current URL:", currentUrl.href);
       console.log("[ReferrerProvider] Referrer URL:", referrer);
-      console.log("[ReferrerProvider] Comparing referrer with allowed domains...");
-      
-      // Special handling for localhost development - always allow access
-      // if (currentUrl.includes("localhost") || currentUrl.includes("127.0.0.1")) {
-      //   console.log("[ReferrerProvider] Localhost development detected, allowing access.");
-      //   setIsFromSearch(true);
-      //   setIsLoading(false);
-      //   return;
-      // }
-      
+
+      // Local development — always allow access
+      const isLocalDev = ["localhost", "127.0.0.1", "[::1]"].includes(
+        currentUrl.hostname
+      );
+      if (isLocalDev) {
+        console.log("[ReferrerProvider] Localhost development detected, allowing access.");
+        setIsFromSearch(true);
+        setIsLoading(false);
+        return;
+      }
+
       if (isFromSearchEngineOrAllowed(referrer)) {
         setIsFromSearch(true);
         console.log("[ReferrerProvider] User came from a search engine or allowed referrer.");
